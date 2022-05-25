@@ -1,9 +1,11 @@
 import 'package:about_me/services/edamam_services.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'buscar.dart';
+import 'favoritos.dart';
 
 class AppState extends StatelessWidget {
-  const AppState({Key? key}) : super(key: key);
+  AppState({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class AppState extends StatelessWidget {
 
 
 class MiApp extends StatefulWidget {
-  const MiApp({
+  MiApp({
     Key? key,
   }) : super(key: key);
 
@@ -32,65 +34,47 @@ class _MiAppState extends State<MiApp> {
 
   int indiceActual = 0;
 
+  final pantallas = [
+    Buscar(),
+    Favoritos(),
+  ];
 
   @override
   Widget build(BuildContext context) {
 
-    final edamamServices = Provider.of<EdamamService>(context);
-
-    if(edamamServices.recetas.isEmpty){
       return Scaffold(
-        appBar: AppBar(
-          title: Text('Edamam'),
-          centerTitle: true,
-        ),
-
-        body: Center(child: Text('Cargando', style: TextStyle(fontSize: 40),)),
-      );
-    } else {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text('Edamam'),
-          centerTitle: true,
-        ),
-
-        body: ListView.builder(
-            itemCount: edamamServices.recetas.length,
-            itemBuilder: (context,i){
-              return Center(child: Text(edamamServices.recetas[i].label.toString(),
-                style: TextStyle(fontSize: 22),));
-            }
-        ),
+        body: pantallas[indiceActual],
 
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.blueGrey,
+          backgroundColor: Colors.black87,
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.white54,
-          iconSize: 30,
-          showUnselectedLabels: false,
+          iconSize: 40,
+          selectedFontSize: 20,
+          unselectedFontSize: 15,
           currentIndex: indiceActual,
           onTap: (indice) => setState(() {
             (indiceActual = indice);
           }),
           items: [
             BottomNavigationBarItem(
-                icon: Icon(Icons.search),
-                label: 'Buscar',
-                backgroundColor: Colors.red,
+              icon: Icon(Icons.search),
+              label: 'Buscar',
             ),
             BottomNavigationBarItem(
-                icon: Icon(Icons.star),
-                label: 'Favoritos',
-                backgroundColor: Colors.yellowAccent,
+              icon: Icon(Icons.star),
+              label: 'Favoritos',
             ),
           ],
         ),
+
       );
+
     }
 
 
-  }
 }
+
 
 

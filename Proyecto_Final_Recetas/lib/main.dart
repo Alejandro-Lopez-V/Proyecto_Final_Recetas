@@ -7,9 +7,16 @@ class AboutMeApp extends StatelessWidget {
   const AboutMeApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
+
+      theme: ThemeData(
+        primaryColor: Color(0xFF161616),
+        primarySwatch: Colors.blue,
+      ),
+
       home: AppState(),
+
     );
   }
 }
