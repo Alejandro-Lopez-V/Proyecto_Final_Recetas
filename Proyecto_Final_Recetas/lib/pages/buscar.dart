@@ -44,11 +44,7 @@ class _BuscarState extends State<Buscar> {
                 itemBuilder: (context,i){
 
                   return MostrarReceta(
-                    titulo: edamamServices.recetas[i].label.toString(),
-                    tiempo: edamamServices.recetas[i].totalTime.toString(),
-                    calorias: edamamServices.recetas[i].calories.toString(),
-                    imagen: edamamServices.recetas[i].image.toString(),
-                    source: edamamServices.recetas[i].source.toString(),
+                    receta: edamamServices.recetas[i],
                   );
                 }
             ),

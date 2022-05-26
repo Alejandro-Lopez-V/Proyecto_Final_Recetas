@@ -1,22 +1,52 @@
+import 'package:about_me/widgets/boton_favorito.dart';
 import 'package:flutter/material.dart';
+import 'edamam_model.dart';
+import 'package:provider/provider.dart';
+import '../services/edamam_services.dart';
 
-class MostrarReceta extends StatelessWidget {
-  final String titulo;
-  final String calorias;
-  final String tiempo;
-  final String imagen;
-  final String source;
+class MostrarReceta extends StatefulWidget {
+
+  final Receta receta;
+
   MostrarReceta({
-    required this.titulo,
-    required this.tiempo,
-    required this.calorias,
-    required this.imagen,
-    required this.source,
+    required this.receta
   });
+
+  @override
+  State<MostrarReceta> createState() => _MostrarRecetaState();
+}
+
+class _MostrarRecetaState extends State<MostrarReceta> {
   @override
   Widget build(BuildContext context) {
+
+    final edamamServices = Provider.of<EdamamService>(context);
+
+
+    Future mostrarIngredientes() => showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text(widget.receta.label, textAlign: TextAlign.center,),
+          content: Container(
+            height: 300,
+            width: 300,
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: widget.receta.ingredientes.length,
+              itemBuilder: (context,i){
+                return Text('•${widget.receta.ingredientes[i].toString()}\n', textAlign: TextAlign.start,);
+              },
+
+            ),
+          ),
+        ),
+    );
+
+
     return InkWell(
-      onTap: (){print('receta presionado');},
+      onTap: (){
+        print(widget.receta.ingredientes);
+        },
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 22, vertical: 10),
         width: MediaQuery.of(context).size.width,
@@ -40,7 +70,7 @@ class MostrarReceta extends StatelessWidget {
               Colors.black.withOpacity(0.35),
               BlendMode.multiply,
             ),
-            image: NetworkImage(imagen),
+            image: NetworkImage(widget.receta.image),
             fit: BoxFit.cover,
           ),
         ),
@@ -62,24 +92,14 @@ class MostrarReceta extends StatelessWidget {
                     child: Row(
                       children: [
                         SizedBox(width: 7),
-                        Text(source),
+                        Text(widget.receta.source),
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                    child: RawMaterialButton(
-                      onPressed: (){print('favorito presionado');},
-                      elevation: 2.0,
-                      fillColor: Colors.black45,
-                      child: Icon(
-                        Icons.star_border,
-                        size: 45,
-                        color: Colors.white,
-                      ),
-                      shape: CircleBorder(),
-                    ),
-                  ),
+
+
+                  BotonFavorito(receta: widget.receta),
+
                 ],
               ),
               alignment: Alignment.topRight,
@@ -99,7 +119,7 @@ class MostrarReceta extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 5.0),
                 child: Text(
-                  titulo,
+                  widget.receta.label,
                   style: TextStyle(
                     fontSize: 19,
                   ),
@@ -129,10 +149,30 @@ class MostrarReceta extends StatelessWidget {
                           size: 18,
                         ),
                         SizedBox(width: 7),
-                        Text('calorias: ${double.parse(calorias).round()}'),
+                        Text('calorias: ${double.parse(widget.receta.calories).round()}'),
                       ],
                     ),
                   ),
+
+
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                    child: RawMaterialButton(
+                      onPressed: (){
+                        mostrarIngredientes();
+                      },
+                      elevation: 2.0,
+                      fillColor: Colors.black45,
+                      child: Icon(
+                        Icons.list_alt,
+                        size: 50,
+                        color: Colors.white,
+                      ),
+                      shape: CircleBorder(),
+                    ),
+                  ),
+
+
                   Container(
                     padding: EdgeInsets.all(5),
                     margin: EdgeInsets.all(10),
@@ -148,7 +188,7 @@ class MostrarReceta extends StatelessWidget {
                           size: 18,
                         ),
                         SizedBox(width: 7),
-                        Text(tiempo),
+                        Text(widget.receta.totalTime),
                       ],
                     ),
                   )
@@ -160,5 +200,9 @@ class MostrarReceta extends StatelessWidget {
         ),
       ),
     );
+
+
   }
+
+
 }
