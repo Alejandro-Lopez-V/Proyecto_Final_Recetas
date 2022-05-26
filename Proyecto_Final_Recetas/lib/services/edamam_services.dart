@@ -11,18 +11,22 @@ class EdamamService extends ChangeNotifier{
   final String _appKey = 'b0bdf228a161dda70fb060547b0c9afc';
   final String _appId = 'b9d8e209';
   List<Receta> recetas = [];
+  bool estaCargando = false;
 
   EdamamService(){
-    getService();
+    getService('healthy');
   }
 
-  getService() async{
+  getService(termino) async{
+    estaCargando = true;
+    notifyListeners();
     final url = Uri.https(_urlBase, '/api/recipes/v2/', {
-      'q':'chicken',
+      'q':termino,
       'app_id': _appId,
       'app_key': _appKey,
       'type' : 'public',
     });
+    recetas = [];
 
     final respuesta = await http.get(url);
     Map json = jsonDecode(respuesta.body);
@@ -33,10 +37,11 @@ class EdamamService extends ChangeNotifier{
         source: e['recipe']['source'],
         label: e['recipe']['label'],
         calories: e['recipe']['calories'].toString(),
+        totalTime: e['recipe']['totalTime'].toString(),
       );
       recetas.add(receta);
     });
-
+    estaCargando = false;
     notifyListeners();
   }
 

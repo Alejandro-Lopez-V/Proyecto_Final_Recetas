@@ -16,7 +16,7 @@ class _FavoritosState extends State<Favoritos> {
         centerTitle: true,
         backgroundColor: Theme.of(context).primaryColor,
       ),
-      body: Center(child: Text('Buscar')),
+      body: Center(child: Text('Favoritos')),
     );
   }
 }

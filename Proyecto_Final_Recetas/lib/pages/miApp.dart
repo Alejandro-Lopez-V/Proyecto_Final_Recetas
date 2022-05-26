@@ -4,23 +4,6 @@ import 'package:provider/provider.dart';
 import 'buscar.dart';
 import 'favoritos.dart';
 
-class AppState extends StatelessWidget {
-  AppState({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MultiProvider(
-        providers: [
-          ChangeNotifierProvider(
-              create: (_) => EdamamService(), lazy: false,
-          ),
-      ],
-      child: MiApp(),
-    );
-  }
-}
-
-
 class MiApp extends StatefulWidget {
   MiApp({
     Key? key,
@@ -47,7 +30,7 @@ class _MiAppState extends State<MiApp> {
 
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.black87,
+          backgroundColor: Theme.of(context).primaryColor,
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.white54,
           iconSize: 40,
