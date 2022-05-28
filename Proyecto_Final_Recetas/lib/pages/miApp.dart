@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'buscar.dart';
 import 'favoritos.dart';
+import 'restricciones.dart';
 
 class MiApp extends StatefulWidget {
   MiApp({
@@ -20,6 +21,7 @@ class _MiAppState extends State<MiApp> {
   final pantallas = [
     Buscar(),
     Favoritos(),
+    Restricciones(),
   ];
 
   @override
@@ -33,7 +35,7 @@ class _MiAppState extends State<MiApp> {
           backgroundColor: Theme.of(context).primaryColor,
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.white54,
-          iconSize: 40,
+          iconSize: 35,
           selectedFontSize: 20,
           unselectedFontSize: 15,
           currentIndex: indiceActual,
@@ -45,10 +47,17 @@ class _MiAppState extends State<MiApp> {
               icon: Icon(Icons.search),
               label: 'Buscar',
             ),
+
             BottomNavigationBarItem(
               icon: Icon(Icons.star),
               label: 'Favoritos',
             ),
+
+            BottomNavigationBarItem(
+              icon: Icon(Icons.cancel),
+              label: 'Restricciones',
+            ),
+
           ],
         ),
 

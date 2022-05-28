@@ -29,7 +29,11 @@ class _BuscarState extends State<Buscar> {
             Column(
               children: [
                 BarraBuscar(),
-                Center(child: CircularProgressIndicator(),)
+                edamamServices.noHayRecetas ?
+                Text('No hay recetas con ese nombre y restricciones :(', textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor), )
+                    :
+                Center(child: CircularProgressIndicator(),),
               ],
             )
           :

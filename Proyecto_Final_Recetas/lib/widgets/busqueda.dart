@@ -43,7 +43,6 @@ class _BarraBuscarState extends State<BarraBuscar> {
             onPressed: (){
               setState(() {
                 edamamServices.getService(_textoController.text);
-                print('buscando ${_textoController.text}');
               });
             },
             color: Theme.of(context).primaryColor,
