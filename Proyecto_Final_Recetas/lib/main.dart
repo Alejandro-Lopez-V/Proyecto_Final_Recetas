@@ -32,7 +32,7 @@ class EdamamApp extends StatelessWidget {
         primaryColor: Color(0xFF161616),
         backgroundColor: Color(0xFFBBBBBB),
         scaffoldBackgroundColor: Color(0xFFBBBBBB),
-        textTheme: TextTheme(
+        textTheme: const TextTheme(
           headline1: TextStyle(color: Colors.white),
           headline2: TextStyle(color: Colors.white),
           bodyText1: TextStyle(color: Colors.white),

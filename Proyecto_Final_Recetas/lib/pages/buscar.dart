@@ -28,7 +28,7 @@ class _BuscarState extends State<Buscar> {
       body: edamamServices.estaCargando ?
             Column(
               children: [
-                BarraBuscar(),
+                const BarraBuscar(),
                 edamamServices.noHayRecetas ?
                 Text('No hay recetas con ese nombre y restricciones :(', textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor), )
@@ -40,7 +40,7 @@ class _BuscarState extends State<Buscar> {
 
       Column(
         children: [
-          BarraBuscar(),
+          const BarraBuscar(),
 
           Expanded(
             child: ListView.builder(

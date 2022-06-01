@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'edamam_model.dart';
 import 'package:provider/provider.dart';
 import '../services/edamam_services.dart';
+import '../pages/mostrarURL.dart';
 
 class MostrarReceta extends StatefulWidget {
 
@@ -18,6 +19,10 @@ class MostrarReceta extends StatefulWidget {
 }
 
 class _MostrarRecetaState extends State<MostrarReceta> {
+
+  
+  
+
   @override
   Widget build(BuildContext context) {
 
@@ -43,9 +48,12 @@ class _MostrarRecetaState extends State<MostrarReceta> {
     );
 
     return InkWell(
-      onTap: (){
-          print('ABRIR ENLACE');
-        },
+      onTap: () => setState(() {
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => MostrarURL(enlace: widget.receta.url),
+        ));
+
+        }),
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
         width: MediaQuery.of(context).size.width,
