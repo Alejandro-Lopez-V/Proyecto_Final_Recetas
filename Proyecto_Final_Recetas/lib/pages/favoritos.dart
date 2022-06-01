@@ -19,14 +19,14 @@ class _FavoritosState extends State<Favoritos> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Favoritos', style: TextStyle(fontSize: 25),),
+        title: const Text('Favoritos', style: TextStyle(fontSize: 25),),
         centerTitle: true,
         backgroundColor: Theme.of(context).primaryColor,
       ),
 
       body: edamamServices.recetasFavoritas.isEmpty ?
 
-            NoHayFavoritos()
+            const NoHayFavoritos()
 
           :
 

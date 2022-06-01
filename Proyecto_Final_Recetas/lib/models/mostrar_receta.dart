@@ -8,7 +8,8 @@ class MostrarReceta extends StatefulWidget {
 
   final Receta receta;
 
-  MostrarReceta({
+  // ignore: use_key_in_widget_constructors
+  const MostrarReceta({
     required this.receta
   });
 
@@ -22,12 +23,11 @@ class _MostrarRecetaState extends State<MostrarReceta> {
 
     final edamamServices = Provider.of<EdamamService>(context);
 
-
     Future mostrarIngredientes() => showDialog(
         context: context,
         builder: (context) => AlertDialog(
           title: Text(widget.receta.label, textAlign: TextAlign.center,),
-          content: Container(
+          content: SizedBox(
             height: 300,
             width: 300,
             child: ListView.builder(
@@ -42,13 +42,12 @@ class _MostrarRecetaState extends State<MostrarReceta> {
         ),
     );
 
-
     return InkWell(
       onTap: (){
-        print(widget.receta.ingredientes);
+          print('ABRIR ENLACE');
         },
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 22, vertical: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 22, vertical: 10),
         width: MediaQuery.of(context).size.width,
         height: 180,
         decoration: BoxDecoration(
@@ -57,7 +56,7 @@ class _MostrarRecetaState extends State<MostrarReceta> {
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.6),
-              offset: Offset(
+              offset: const Offset(
                 0.0,
                 10.0,
               ),
@@ -83,15 +82,15 @@ class _MostrarRecetaState extends State<MostrarReceta> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    padding: EdgeInsets.all(5),
-                    margin: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(5),
+                    margin: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.4),
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Row(
                       children: [
-                        SizedBox(width: 7),
+                        const SizedBox(width: 7),
                         Text(widget.receta.source),
                       ],
                     ),
@@ -105,22 +104,12 @@ class _MostrarRecetaState extends State<MostrarReceta> {
               alignment: Alignment.topRight,
             ),
 
-
-
-
-
-
-
-
-
-
-
             Align(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5.0),
+                padding: const EdgeInsets.symmetric(horizontal: 5.0),
                 child: Text(
                   widget.receta.label,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 19,
                   ),
                   overflow: TextOverflow.ellipsis,
@@ -135,20 +124,20 @@ class _MostrarRecetaState extends State<MostrarReceta> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    padding: EdgeInsets.all(5),
-                    margin: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(5),
+                    margin: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.4),
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.whatshot_rounded,
                           color: Colors.purpleAccent,
                           size: 18,
                         ),
-                        SizedBox(width: 7),
+                        const SizedBox(width: 7),
                         Text('calorias: ${double.parse(widget.receta.calories).round()}'),
                       ],
                     ),
@@ -156,38 +145,38 @@ class _MostrarRecetaState extends State<MostrarReceta> {
 
 
                   Padding(
-                    padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                     child: RawMaterialButton(
                       onPressed: (){
                         mostrarIngredientes();
                       },
                       elevation: 2.0,
                       fillColor: Colors.black45,
-                      child: Icon(
+                      child: const Icon(
                         Icons.list_alt,
                         size: 50,
                         color: Colors.white,
                       ),
-                      shape: CircleBorder(),
+                      shape: const CircleBorder(),
                     ),
                   ),
 
 
                   Container(
-                    padding: EdgeInsets.all(5),
-                    margin: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(5),
+                    margin: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.4),
                       borderRadius: BorderRadius.circular(15),
                     ),
                     child: Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.schedule,
                           color: Colors.purpleAccent,
                           size: 18,
                         ),
-                        SizedBox(width: 7),
+                        const SizedBox(width: 7),
                         Text(widget.receta.totalTime),
                       ],
                     ),

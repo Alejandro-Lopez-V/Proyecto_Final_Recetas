@@ -3,7 +3,7 @@ import 'package:about_me/services/edamam_services.dart';
 import 'package:provider/provider.dart';
 
 class BarraBuscar extends StatefulWidget {
-  BarraBuscar({Key? key}) : super(key: key);
+  const BarraBuscar({Key? key}) : super(key: key);
 
   @override
   State<BarraBuscar> createState() => _BarraBuscarState();

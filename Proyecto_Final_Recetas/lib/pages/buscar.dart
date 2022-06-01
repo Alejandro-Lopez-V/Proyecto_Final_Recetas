@@ -5,7 +5,7 @@ import '../models/mostrar_receta.dart';
 import '../widgets/busqueda.dart';
 
 class Buscar extends StatefulWidget {
-  Buscar({Key? key}) : super(key: key);
+  const Buscar({Key? key}) : super(key: key);
 
   @override
   _BuscarState createState() => _BuscarState();
@@ -21,7 +21,7 @@ class _BuscarState extends State<Buscar> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Recetas', style: TextStyle(fontSize: 25),),
+        title: const Text('Recetas', style: TextStyle(fontSize: 25),),
         centerTitle: true,
         backgroundColor: Theme.of(context).primaryColor,
       ),
@@ -33,7 +33,7 @@ class _BuscarState extends State<Buscar> {
                 Text('No hay recetas con ese nombre y restricciones :(', textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor), )
                     :
-                Center(child: CircularProgressIndicator(),),
+                const Center(child: CircularProgressIndicator(),),
               ],
             )
           :

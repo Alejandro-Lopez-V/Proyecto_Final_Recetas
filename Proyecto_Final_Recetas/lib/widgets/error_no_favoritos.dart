@@ -6,7 +6,7 @@ class NoHayFavoritos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -23,7 +23,7 @@ class NoHayFavoritos extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     Icon(Icons.error, size: 60, color: Colors.white,),
                     Text('Parece que no tiene recetas favoritas',
                       style: TextStyle(fontSize: 30), textAlign: TextAlign.center,),

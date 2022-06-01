@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../models/edamam_model.dart';
 
-
 class EdamamService extends ChangeNotifier{
 
   final String _urlBase = 'api.edamam.com';
@@ -15,17 +14,23 @@ class EdamamService extends ChangeNotifier{
   List<Receta> recetas = [];
   List<Receta> recetasFavoritas = [];
   bool estaCargando = false;
-  String _restricciones = 'soy-free';
   bool noHayRecetas = false;
+
 
   bool esVegano = false;
   bool esVegetariano = false;
+  bool esPaleo = false;
   bool esSinLactosa = false;
   bool esBajoEnAzucar = false;
+  bool sinNueces = false;
+  String _restricciones = 'soy-free';
   bool esSinTrigo = false;
+  bool sinMaricos = false;
   List todasLasRestricciones = [];
 
+
   EdamamService(){
+    todasLasRestricciones.add(_restricciones);
     getService('salad');
   }
 
@@ -35,14 +40,6 @@ class EdamamService extends ChangeNotifier{
 
     final url = Uri.https(_urlBase, '/api/recipes/v2/', {
       'q':termino,
-      'app_id': _appId,
-      'app_key': _appKey,
-      'type' : 'public',
-      'health': _restricciones,
-    });
-
-    final url2 = Uri.https(_urlBase, '/api/recipes/v2/', {
-      'q':'healthy',
       'app_id': _appId,
       'app_key': _appKey,
       'type' : 'public',
@@ -70,6 +67,7 @@ class EdamamService extends ChangeNotifier{
           );
           recetas.add(receta);
         });
+        noHayRecetas = false;
         estaCargando = false;
         notifyListeners();
 
@@ -101,7 +99,7 @@ class EdamamService extends ChangeNotifier{
 
   actualizarRestricciones(){
     _restricciones = todasLasRestricciones.join("&");
-    print(_restricciones);
   }
+
 
 }

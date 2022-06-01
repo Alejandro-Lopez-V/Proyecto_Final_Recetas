@@ -21,7 +21,6 @@ class AppState extends StatelessWidget {
   }
 }
 
-
 class EdamamApp extends StatelessWidget {
   const EdamamApp({Key? key}) : super(key: key);
   @override

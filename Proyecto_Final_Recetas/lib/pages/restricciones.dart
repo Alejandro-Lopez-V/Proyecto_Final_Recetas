@@ -20,27 +20,27 @@ class _RestriccionesState extends State<Restricciones> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Restricciones', style: TextStyle(fontSize: 25),),
+        title: const Text('Restricciones', style: TextStyle(fontSize: 25),),
         centerTitle: true,
         backgroundColor: Theme.of(context).primaryColor,
       ),
 
       body: ListView(
-        padding: EdgeInsets.all(12),
+        padding: const EdgeInsets.all(12),
         children: [
 
           CheckboxListTile(
             controlAffinity: ListTileControlAffinity.leading,
             activeColor: Theme.of(context).primaryColor,
             value: edamamServices.esVegano,
-            title: Text('Vegano', style: TextStyle(fontSize: 30),),
+            title: const Text('Vegano', style: TextStyle(fontSize: 30),),
             onChanged: (value) {
               setState(() {
                 edamamServices.esVegano = value!;
                 if(edamamServices.esVegano){
                   edamamServices.todasLasRestricciones.add('vegan');
                 } else {
-                  edamamServices.todasLasRestricciones..remove('vegan');
+                  edamamServices.todasLasRestricciones.remove('vegan');
                 }
                 edamamServices.actualizarRestricciones();
 
@@ -53,14 +53,32 @@ class _RestriccionesState extends State<Restricciones> {
             controlAffinity: ListTileControlAffinity.leading,
             activeColor: Theme.of(context).primaryColor,
             value: edamamServices.esVegetariano,
-            title: Text('Vegetariano', style: TextStyle(fontSize: 30),),
+            title: const Text('Vegetariano', style: TextStyle(fontSize: 30),),
             onChanged: (value) {
               setState(() {
                 edamamServices.esVegetariano = value!;
                 if(edamamServices.esVegetariano){
                   edamamServices.todasLasRestricciones.add('vegetarian');
                 } else {
-                  edamamServices.todasLasRestricciones..remove('vegetarian');
+                  edamamServices.todasLasRestricciones.remove('vegetarian');
+                }
+                edamamServices.actualizarRestricciones();
+              });
+            },
+          ),
+
+          CheckboxListTile(
+            controlAffinity: ListTileControlAffinity.leading,
+            activeColor: Theme.of(context).primaryColor,
+            value: edamamServices.esPaleo,
+            title: const Text('Paleo', style: TextStyle(fontSize: 30),),
+            onChanged: (value) {
+              setState(() {
+                edamamServices.esPaleo = value!;
+                if(edamamServices.esPaleo){
+                  edamamServices.todasLasRestricciones.add('paleo');
+                } else {
+                  edamamServices.todasLasRestricciones.remove('paleo');
                 }
                 edamamServices.actualizarRestricciones();
               });
@@ -72,14 +90,14 @@ class _RestriccionesState extends State<Restricciones> {
             controlAffinity: ListTileControlAffinity.leading,
             activeColor: Theme.of(context).primaryColor,
             value: edamamServices.esSinLactosa,
-            title: Text('Sin Lactosa', style: TextStyle(fontSize: 30),),
+            title: const Text('Sin Lactosa', style: TextStyle(fontSize: 30),),
             onChanged: (value) {
               setState(() {
                 edamamServices.esSinLactosa = value!;
                 if(edamamServices.esSinLactosa){
                   edamamServices.todasLasRestricciones.add('dairy-free');
                 } else {
-                  edamamServices.todasLasRestricciones..remove('dairy-free');
+                  edamamServices.todasLasRestricciones.remove('dairy-free');
                 }
                 edamamServices.actualizarRestricciones();
               });
@@ -90,14 +108,14 @@ class _RestriccionesState extends State<Restricciones> {
             controlAffinity: ListTileControlAffinity.leading,
             activeColor: Theme.of(context).primaryColor,
             value: edamamServices.esBajoEnAzucar,
-            title: Text('Bajo en Azúcar', style: TextStyle(fontSize: 30),),
+            title: const Text('Bajo en Azúcar', style: TextStyle(fontSize: 30),),
             onChanged: (value) {
               setState(() {
                 edamamServices.esBajoEnAzucar = value!;
                 if(edamamServices.esBajoEnAzucar){
                   edamamServices.todasLasRestricciones.add('low-sugar');
                 } else {
-                  edamamServices.todasLasRestricciones..remove('low-sugar');
+                  edamamServices.todasLasRestricciones.remove('low-sugar');
                 }
                 edamamServices.actualizarRestricciones();
               });
@@ -108,51 +126,55 @@ class _RestriccionesState extends State<Restricciones> {
             controlAffinity: ListTileControlAffinity.leading,
             activeColor: Theme.of(context).primaryColor,
             value: edamamServices.esSinTrigo,
-            title: Text('Sin Trigo', style: TextStyle(fontSize: 30),),
+            title: const Text('Sin Trigo', style: TextStyle(fontSize: 30),),
             onChanged: (value) {
               setState(() {
                 edamamServices.esSinTrigo = value!;
                 if(edamamServices.esSinTrigo){
                   edamamServices.todasLasRestricciones.add('wheat-free');
                 } else {
-                  edamamServices.todasLasRestricciones..remove('wheat-free');
+                  edamamServices.todasLasRestricciones.remove('wheat-free');
                 }
                 edamamServices.actualizarRestricciones();
               });
             },
           ),
 
-
-          Container(
-            padding: EdgeInsets.fromLTRB(70, 60, 30, 10),
-            child: Text('Calorias',style: TextStyle(
-                fontSize: 30, color: Theme.of(context).primaryColor),),
+          CheckboxListTile(
+            controlAffinity: ListTileControlAffinity.leading,
+            activeColor: Theme.of(context).primaryColor,
+            value: edamamServices.sinMaricos,
+            title: const Text('Sin Mariscos', style: TextStyle(fontSize: 30),),
+            onChanged: (value) {
+              setState(() {
+                edamamServices.sinMaricos = value!;
+                if(edamamServices.sinMaricos){
+                  edamamServices.todasLasRestricciones.add('shellfish-free');
+                } else {
+                  edamamServices.todasLasRestricciones.remove('shellfish-free');
+                }
+                edamamServices.actualizarRestricciones();
+              });
+            },
           ),
 
-          Container(
-            padding: EdgeInsets.fromLTRB(40, 10, 40, 10),
-            child: TextField(
-              keyboardType: TextInputType.number,
-              controller: _textoController,
-              onChanged: (e){
-                print(e);
-              },
-              decoration: InputDecoration(
-                hintText: 'Introducir calorias máximas',
-                border: OutlineInputBorder(),
-              ),
-            ),
+          CheckboxListTile(
+            controlAffinity: ListTileControlAffinity.leading,
+            activeColor: Theme.of(context).primaryColor,
+            value: edamamServices.sinNueces,
+            title: const Text('Sin Nueces', style: TextStyle(fontSize: 30),),
+            onChanged: (value) {
+              setState(() {
+                edamamServices.sinNueces = value!;
+                if(edamamServices.sinNueces){
+                  edamamServices.todasLasRestricciones.add('tree-nut-free');
+                } else {
+                  edamamServices.todasLasRestricciones.remove('tree-nut-free');
+                }
+                edamamServices.actualizarRestricciones();
+              });
+            },
           ),
-
-
-
-
-
-
-
-
-
-
 
         ],
       ),

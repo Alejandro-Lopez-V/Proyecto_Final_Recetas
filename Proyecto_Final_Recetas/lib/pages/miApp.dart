@@ -1,12 +1,10 @@
-import 'package:about_me/services/edamam_services.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'buscar.dart';
 import 'favoritos.dart';
 import 'restricciones.dart';
 
 class MiApp extends StatefulWidget {
-  MiApp({
+  const MiApp({
     Key? key,
   }) : super(key: key);
 
@@ -19,9 +17,9 @@ class _MiAppState extends State<MiApp> {
   int indiceActual = 0;
 
   final pantallas = [
-    Buscar(),
-    Favoritos(),
-    Restricciones(),
+    const Buscar(),
+    const Favoritos(),
+    const Restricciones(),
   ];
 
   @override
@@ -42,7 +40,7 @@ class _MiAppState extends State<MiApp> {
           onTap: (indice) => setState(() {
             (indiceActual = indice);
           }),
-          items: [
+          items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.search),
               label: 'Buscar',
