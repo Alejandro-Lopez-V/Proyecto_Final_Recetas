@@ -25,11 +25,8 @@ class _FavoritosState extends State<Favoritos> {
       ),
 
       body: edamamServices.recetasFavoritas.isEmpty ?
-
             const NoHayFavoritos()
-
           :
-
       Column(
         children: [
 

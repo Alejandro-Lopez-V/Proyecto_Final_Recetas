@@ -16,38 +16,45 @@ class EdamamService extends ChangeNotifier{
   bool estaCargando = false;
   bool noHayRecetas = false;
 
-
   bool esVegano = false;
   bool esVegetariano = false;
   bool esPaleo = false;
   bool esSinLactosa = false;
   bool esBajoEnAzucar = false;
   bool sinNueces = false;
-  String _restricciones = 'soy-free';
   bool esSinTrigo = false;
   bool sinMaricos = false;
+  late String _restricciones;
   List todasLasRestricciones = [];
 
-
   EdamamService(){
-    todasLasRestricciones.add(_restricciones);
     getService('salad');
   }
 
   getService(termino) async{
     estaCargando = true;
     notifyListeners();
+    final url;
+    if(todasLasRestricciones.isEmpty){
+      url = Uri.https(_urlBase, '/api/recipes/v2/', {
+        'q':termino,
+        'app_id': _appId,
+        'app_key': _appKey,
+        'type' : 'public',
+      });
+    } else {
+      url = Uri.https(_urlBase, '/api/recipes/v2/', {
+        'q':termino,
+        'app_id': _appId,
+        'app_key': _appKey,
+        'type' : 'public',
+        'health': _restricciones,
+      });
+    }
 
-    final url = Uri.https(_urlBase, '/api/recipes/v2/', {
-      'q':termino,
-      'app_id': _appId,
-      'app_key': _appKey,
-      'type' : 'public',
-      'health': _restricciones,
-    });
 
     recetas = [];
-    final respuesta;
+    final http.Response respuesta;
     try{
       respuesta = await http.get(url).timeout(const Duration(seconds: 7));
       if(respuesta.statusCode ==200){
@@ -78,8 +85,12 @@ class EdamamService extends ChangeNotifier{
       }
     } on TimeoutException catch (e){
         print('TIMEOUT');
+        noHayRecetas = true;
+        notifyListeners();
     } on Error catch(e){
         print('error $e');
+        noHayRecetas = true;
+        notifyListeners();
     }
 
 
@@ -99,6 +110,7 @@ class EdamamService extends ChangeNotifier{
 
   actualizarRestricciones(){
     _restricciones = todasLasRestricciones.join("&");
+    print(_restricciones);
   }
 
 

@@ -11,8 +11,8 @@ class Receta{
   Receta({required this.url,required this.image,required this.source,required this.label,required this.calories,required this.totalTime, required this.ingredientes
   });
 
+
   factory Receta.fromJson(Map<String, dynamic> json){
-    List<Receta> recetas = [];
     return Receta(
       url: json['url'],
       image: json['image'],

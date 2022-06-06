@@ -2,6 +2,7 @@
     package="com.example.about_me">
    <application
         android:label="about_me"
+        android:usesCleartextTraffic="true"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
